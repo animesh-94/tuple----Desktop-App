@@ -1,4 +1,4 @@
-import { React, useState, KeyboardEvent, useRef, useEffect } from 'react';
+import { useState, KeyboardEvent, useRef, useEffect } from 'react';
 import { Trash2, SplitSquareHorizontal, X } from 'lucide-react';
 
 interface Log {
@@ -7,7 +7,7 @@ interface Log {
   type: 'info' | 'success' | 'error' | 'input';
 }
 
-export const TerminalPanel: React.FC = () => {
+export const TerminalPanel = () => {
   const [activeTab, setActiveTab] = useState<'TERMINAL' | 'OUTPUT' | 'DEBUG CONSOLE'>('TERMINAL');
   const [logs, setLogs] = useState<Log[]>([
     { id: '1', text: 'Tuple IDE v1.0.0 initialized.', type: 'info' },
