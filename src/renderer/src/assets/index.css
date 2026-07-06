@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-zinc-950 text-zinc-100 antialiased h-screen w-screen overflow-hidden m-0 p-0;
+    font-family: 'Geist', sans-serif;
+  }
+  
+  .font-mono {
+    font-family: 'Geist Mono', monospace;
+  }
+}
