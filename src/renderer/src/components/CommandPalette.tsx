@@ -11,7 +11,7 @@ interface CommandPaletteProps {
 export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
   const [prompt, setPrompt] = useState('');
   const [loading, setLoading] = useState(false);
-  const { addTable, addRelation, tables } = useSchemaStore();
+
 
   if (!isOpen) return null;
 

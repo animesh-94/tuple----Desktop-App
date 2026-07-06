@@ -1,4 +1,4 @@
-import React, { useState, KeyboardEvent, useRef, useEffect } from 'react';
+import { React, useState, KeyboardEvent, useRef, useEffect } from 'react';
 import { Trash2, SplitSquareHorizontal, X } from 'lucide-react';
 
 interface Log {
@@ -29,7 +29,7 @@ export const TerminalPanel: React.FC = () => {
     if (e.key === 'Enter' && inputValue.trim()) {
       const command = inputValue.trim();
       setInputValue('');
-      
+
       // Add the user's input to the logs
       setLogs(prev => [...prev, { id: Date.now().toString(), text: command, type: 'input' }]);
 
@@ -49,7 +49,7 @@ export const TerminalPanel: React.FC = () => {
           });
         }
         if (result.error) {
-           setLogs(prev => [...prev, { id: Date.now().toString() + 'ex', text: result.error, type: 'error' }]);
+          setLogs(prev => [...prev, { id: Date.now().toString() + 'ex', text: String(result.error), type: 'error' }]);
         }
       } catch (err: any) {
         setLogs(prev => [...prev, { id: Date.now().toString() + 'err', text: err.message || 'Unknown error occurred.', type: 'error' }]);
@@ -61,19 +61,19 @@ export const TerminalPanel: React.FC = () => {
     <div className="h-48 w-full bg-[#1e1e1e] border-t border-[#3c3c3c] flex flex-col shrink-0">
       <div className="h-9 flex items-center justify-between px-4 text-[11px] uppercase tracking-wider text-[#858585] border-b border-[#3c3c3c]">
         <div className="flex h-full items-center gap-6">
-          <button 
+          <button
             onClick={() => setActiveTab('TERMINAL')}
             className={`h-full flex items-center hover:text-[#cccccc] transition-colors ${activeTab === 'TERMINAL' ? 'text-[#cccccc] border-b border-[#007acc]' : ''}`}
           >
             TERMINAL
           </button>
-          <button 
+          <button
             onClick={() => setActiveTab('OUTPUT')}
             className={`h-full flex items-center hover:text-[#cccccc] transition-colors ${activeTab === 'OUTPUT' ? 'text-[#cccccc] border-b border-[#007acc]' : ''}`}
           >
             OUTPUT
           </button>
-          <button 
+          <button
             onClick={() => setActiveTab('DEBUG CONSOLE')}
             className={`h-full flex items-center hover:text-[#cccccc] transition-colors ${activeTab === 'DEBUG CONSOLE' ? 'text-[#cccccc] border-b border-[#007acc]' : ''}`}
           >
@@ -92,11 +92,11 @@ export const TerminalPanel: React.FC = () => {
           </button>
         </div>
       </div>
-      
+
       <div className="flex-1 overflow-y-auto p-4 font-mono text-[12px] flex flex-col gap-1">
         {logs.map(log => (
-          <div 
-            key={log.id} 
+          <div
+            key={log.id}
             className={`whitespace-pre-wrap ${log.type === 'success' ? 'text-green-400' : log.type === 'error' ? 'text-red-400' : log.type === 'input' ? 'text-yellow-100' : 'text-[#cccccc]'}`}
           >
             {log.type === 'input' && <span className="text-[#007acc] mr-2">~/tuple-project $</span>}
@@ -105,8 +105,8 @@ export const TerminalPanel: React.FC = () => {
         ))}
         <div className="flex items-center mt-1">
           <span className="text-[#007acc] mr-2 shrink-0">~/tuple-project $</span>
-          <input 
-            type="text" 
+          <input
+            type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={handleKeyDown}
